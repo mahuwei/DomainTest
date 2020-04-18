@@ -24,7 +24,7 @@
         "Name": "Console",
         "Args": {
           //"outputTemplate": "===> {Timestamp:HH:mm:ss.fff zzz} [{Level}] {SourceContext} {Message}{NewLine}{Exception}",
-          "outputTemplate": "[{Timestamp:o}][{Level:u4}][{ThreadId}][{SourceContext}] {Message}{NewLine}{Exception}",
+          //"outputTemplate": "[{Timestamp:o}][{Level:u4}][{ThreadId}][{SourceContext}] {Message}{NewLine}{Exception}",
           "textFormatter": "Serilog.Formatting.Json.JsonFormatter, Serilog"
 
         }
@@ -36,7 +36,7 @@
           "rollingInterval": "Day",
           "retainedFileCountLimit": "31",
           //"outputTemplate": "===> {Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] {SourceContext} {Message}{NewLine}{Exception}",
-          "outputTemplate": "[{Timestamp:o}][{Level:u4}][{ThreadId}][{SourceContext}] {Message}{NewLine}{Exception}",
+          //"outputTemplate": "[{Timestamp:o}][{Level:u4}][{ThreadId}][{SourceContext}] {Message}{NewLine}{Exception}",
           "textFormatter": "Serilog.Formatting.Json.JsonFormatter, Serilog"
         }
       }

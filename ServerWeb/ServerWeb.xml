@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ServerWeb</name>
+    </assembly>
+    <members>
+        <member name="T:ServerWeb.Controllers.WfController">
+            <summary>
+              测试Controller
+            </summary>
+        </member>
+        <member name="M:ServerWeb.Controllers.WfController.#ctor(Microsoft.Extensions.Logging.ILogger{ServerWeb.Controllers.WfController},ServerWeb.Services.ITransientSample,ServerWeb.Services.ISingletonSample,MediatR.IMediator)">
+            <summary>
+              构造函数
+            </summary>
+            <param name="logger"></param>
+            <param name="transientSample"></param>
+            <param name="singletonSample"></param>
+            <param name="mediator"></param>
+        </member>
+        <member name="M:ServerWeb.Controllers.WfController.Get">
+            <summary>
+              获取天气预报:单播消息传输
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ServerWeb.Controllers.WfController.Send">
+            <summary>
+              IMediator.Send
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ServerWeb.Controllers.WfController.Publish(System.String)">
+            <summary>
+              IMediator.Publish:多播消息传输
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

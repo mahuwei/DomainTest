@@ -4,6 +4,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
+#pragma warning disable 1591
+
 namespace ServerWeb.Services {
   public interface ITransientSample : IServiceSample {
   }
