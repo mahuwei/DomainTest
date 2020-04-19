@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using AutoMapper;
@@ -12,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Serilog;
 using ServerWeb.Services;
 
 #pragma warning disable 1591
@@ -47,6 +49,25 @@ namespace ServerWeb {
 
       services.AddDbContext<DomainContext>(builder => {
         builder.UseSqlServer(Configuration.GetConnectionString("DBConnectString"));
+      });
+
+      services.AddCap(x => {
+        //如果你使用的 EF 进行数据操作，你需要添加如下配置：
+        x.UseEntityFramework<DomainContext>();
+        x.UseKafka(options => {
+          options.Servers = "192.168.1.51:9093,192.168.1.51:9092,192.168.1.51:9094";
+          options.CustomHeaders = kafkaResult => new List<KeyValuePair<string, string>> {
+            new KeyValuePair<string, string>("kafka.offset", kafkaResult.Offset.ToString()),
+            new KeyValuePair<string, string>("afka.partition", kafkaResult.Partition.ToString())
+          };
+        });
+
+        x.DefaultGroup = "ServerWebDomain";
+        x.FailedThresholdCallback = (type, message) => {
+          Log.Logger.Error(
+            "A message of type {@type} failed after executing {@FailedRetryCount} several times, requiring manual troubleshooting. Message: {@message}",
+            type, x.FailedRetryCount, message);
+        };
       });
     }
 
