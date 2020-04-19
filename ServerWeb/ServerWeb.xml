@@ -4,6 +4,22 @@
         <name>ServerWeb</name>
     </assembly>
     <members>
+        <member name="T:ServerWeb.Commands.ControllerApiBase">
+            <summary>
+              统一Api返回对象
+            </summary>
+        </member>
+        <member name="M:ServerWeb.Commands.ControllerApiBase.Output``1(``0,System.Int32,System.String,System.Exception)">
+            <summary>
+              统一返回的结果格式；
+              不论操作是否功能，都返回该对象（HttpCode都是200），需要通过返回对象的status来判断最终是否成功。
+            </summary>
+            <param name="data">操作成功返回数据数据</param>
+            <param name="status">操作成功失败的最终标示：0=成功；!0=失败</param>
+            <param name="msg">操作失败消息</param>
+            <param name="ex">错误信息</param>
+            <returns></returns>
+        </member>
         <member name="T:ServerWeb.Controllers.WfController">
             <summary>
               测试Controller

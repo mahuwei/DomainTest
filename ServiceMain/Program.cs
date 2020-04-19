@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using Domain;
 using Domain.Entities;
 using MediatR;
 using Microsoft.Extensions.Configuration;
@@ -13,7 +12,7 @@ using Serilog;
 using ServiceMain.Services;
 
 namespace ServiceMain {
-  class Program {
+  internal class Program {
     public static IConfiguration Configuration { get; } =
       new ConfigurationBuilder()
         .SetBasePath(Directory.GetCurrentDirectory())
@@ -24,7 +23,7 @@ namespace ServiceMain {
         .AddEnvironmentVariables()
         .Build();
 
-    static async Task Main(string[] args) {
+    private static async Task Main(string[] args) {
       var serviceCollection = new ServiceCollection();
       // 用工厂模式将配置对象注册到容器管理
       serviceCollection.AddSingleton(p => Configuration);

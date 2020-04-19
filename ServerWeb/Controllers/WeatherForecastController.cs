@@ -68,7 +68,7 @@ namespace ServerWeb.Controllers {
     [Route("send")]
     public async Task<Employee> Send() {
       _logger.LogDebug("start Send()...");
-      var ret = await _mediator.Send(new GetSend());
+      var ret = await _mediator.Send(new GetSend(), HttpContext.RequestAborted);
       _logger.LogDebug("Send() result:{@ret}", ret);
       return ret;
     }
@@ -81,7 +81,7 @@ namespace ServerWeb.Controllers {
     [HttpPost]
     public async Task Publish(string info) {
       _logger.LogDebug("start Publish({@info})...", info);
-      await _mediator.Publish(new Ping { Info = info });
+      await _mediator.Publish(new Ping { Info = info }, HttpContext.RequestAborted);
       _logger.LogDebug("Publish() end.");
     }
   }

@@ -10,6 +10,7 @@ namespace ServiceMain.Services {
 
   public class SampleTransientService : ISampleService {
     private readonly ILogger<SampleTransientService> _logger;
+
     //private readonly IOptions<TransientServiceConfig> _options;
     private readonly IOptionsSnapshot<TransientServiceConfig> _options;
 
