@@ -1,0 +1,57 @@
+get https://localhost:5011/company/wf
+
+### 
+DELETE https://localhost:5011/company/wf HTTP/1.1
+content-type: application/json
+Accept: application/json
+
+{"id":1,"name":"马虎维"}
+
+###
+
+get https://localhost:5021/business/wf
+
+
+### 
+DELETE https://localhost:5021/business/wf HTTP/1.1
+content-type: application/json
+Accept: application/json
+
+{"id":1,"name":"马虎维"}
+
+###
+get https://localhost:5001/business/wf
+###
+get https://localhost:5001/business/wf/top?count=3
+###
+post https://localhost:5001/business/wf HTTP/1.1
+content-type: application/json
+Accept: application/json
+
+{"id":1,"name":"马虎维"}
+
+### business没有配置Delete命令，不能删除
+DELETE https://localhost:5001/business/wf HTTP/1.1
+content-type: application/json
+Accept: application/json
+
+{"id":1,"name":"马虎维"}
+
+
+###
+get https://localhost:5001/company/wf
+###
+get https://localhost:5001/company/wf/top?count=1
+###
+post https://localhost:5001/company/wf HTTP/1.1
+content-type: application/json
+Accept: application/json
+
+{"id":1,"name":"马虎维"}
+
+### 
+DELETE https://localhost:5001/company/wf HTTP/1.1
+content-type: application/json
+Accept: application/json
+
+{"id":1,"name":"马虎维"}

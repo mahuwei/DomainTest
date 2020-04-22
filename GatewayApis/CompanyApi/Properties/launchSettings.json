@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "CompanyApi": {
+      "commandName": "Project",
+      "launchBrowser": false,
+      "launchUrl": "company/wf",
+      "applicationUrl": "https://localhost:5011;http://localhost:5010",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

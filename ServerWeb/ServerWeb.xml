@@ -53,5 +53,12 @@
             <param name="info"></param>
             <returns></returns>
         </member>
+        <member name="M:ServerWeb.Services.SingletonSample.EntitiesCreatedSubscribe(ServerWeb.DomainEventHandlers.EntitiesCreatedIntegrationEvent,DotNetCore.CAP.CapHeader)">
+            <summary>
+              需要添加<see cref="T:DotNetCore.CAP.ICapSubscribe" />接口，否则无法发起订阅。
+            </summary>
+            <param name="value"></param>
+            <param name="header"></param>
+        </member>
     </members>
 </doc>
