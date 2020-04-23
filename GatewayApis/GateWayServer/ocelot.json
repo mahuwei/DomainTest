@@ -2,19 +2,26 @@
   "ReRoutes": [
     {
       "DownstreamPathTemplate": "/company/{everything}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 5011
+          "Port": 5010
+        },
+        {
+          "Host": "localhost",
+          "Port": 5012
         }
       ],
       "UpstreamPathTemplate": "/company/{everything}",
-      "UpstreamHttpMethod": ["Get", "Post", "Delete"]
+      "UpstreamHttpMethod": ["Get", "Post", "Delete"],
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      }
     },
     {
       "DownstreamPathTemplate": "/business/{everything}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
