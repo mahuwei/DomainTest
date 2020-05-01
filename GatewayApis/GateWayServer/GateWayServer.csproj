@@ -6,6 +6,11 @@
 
   <ItemGroup>
     <PackageReference Include="Ocelot" Version="15.0.6" />
+    <PackageReference Include="Ocelot.Provider.Consul" Version="15.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Models\Models.csproj" />
   </ItemGroup>
 
 

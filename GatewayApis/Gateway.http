@@ -20,18 +20,18 @@ Accept: application/json
 {"id":1,"name":"马虎维"}
 
 ###
-get http://localhost:5001/business/wf
+get http://localhost:5000/business/wf
 ###
-get http://localhost:5001/business/wf/top?count=3
+get http://localhost:5000/business/wf/top?count=3
 ###
-post http://localhost:5001/business/wf HTTP/1.1
+post http://localhost:5000/business/wf HTTP/1.1
 content-type: application/json
 Accept: application/json
 
 {"id":1,"name":"马虎维"}
 
 ### business没有配置Delete命令，不能删除
-DELETE http://localhost:5001/business/wf HTTP/1.1
+DELETE http://localhost:5000/business/wf HTTP/1.1
 content-type: application/json
 Accept: application/json
 
@@ -39,19 +39,33 @@ Accept: application/json
 
 
 ###
-get http://localhost:5001/company/wf
+get http://localhost:5000/company/wf
 ###
-get http://localhost:5001/company/wf/top?count=1
+get http://localhost:5000/company/wf/top?count=1
 ###
-post http://localhost:5001/company/wf HTTP/1.1
+post http://localhost:5000/company/wf HTTP/1.1
 content-type: application/json
 Accept: application/json
 
 {"id":1,"name":"马虎维"}
 
 ### 
-DELETE http://localhost:5001/company/wf HTTP/1.1
+DELETE http://localhost:5000/company/wf HTTP/1.1
 content-type: application/json
 Accept: application/json
 
 {"id":1,"name":"马虎维"}
+
+### 获取配置：ServerConfig
+http://192.168.1.101:5000/business/wf/kv?key=ServerConfig
+
+
+### 获取配置：App1 目录
+http://192.168.1.101:5000/business/wf/kv?key=App1
+
+### 获取配置：App1 目录
+http://192.168.1.101:5000/business/wf/kv?key=App1/KafkaTopics
+
+
+### 获取配置：系统配置
+http://192.168.1.101:5000/business/wf/config

@@ -15,8 +15,9 @@ namespace GateWayServer {
             .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
             .AddJsonFile("appsettings.json", true, true)
             .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true, true)
-            .AddJsonFile("Ocelot.json", false, true)
-            .AddEnvironmentVariables();
+            .AddJsonFile("ocelot.json", false, true)
+            .AddEnvironmentVariables()
+            .AddCommandLine(args);
         })
         .ConfigureWebHostDefaults(webBuilder => {
           webBuilder.UseStartup<Startup>();

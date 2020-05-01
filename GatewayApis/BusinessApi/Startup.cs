@@ -1,15 +1,13 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Consul;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Models;
+using Models.Filters;
+using Newtonsoft.Json;
 
 namespace BusinessApi {
   public class Startup {
@@ -19,12 +17,23 @@ namespace BusinessApi {
 
     public IConfiguration Configuration { get; }
 
-    // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services) {
-      services.AddControllers();
+      services.AddControllers(options => { options.Filters.Add<CustomExceptionFilterAttribute>(); });
+      services.AddHealthChecks();
+
+      services.AddSingleton<IConsulClient, ConsulClient>(p => new ConsulClient(consulConfig => {
+        //consul address  
+        consulConfig.Address = new Uri($"{Configuration["Consul:ServicesIp"]}:{Configuration["Consul:Port"]}");
+      }, null, handlerOverride => {
+        //disable proxy of httpClient handler  
+        handlerOverride.Proxy = null;
+        handlerOverride.UseProxy = false;
+      }));
+
+      services.Configure<BaseConfig>(Configuration.GetSection("BaseConfig"));
+      services.AddHostedService<TestService>();
     }
 
-    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
       if (env.IsDevelopment()) {
         app.UseDeveloperExceptionPage();
@@ -38,7 +47,11 @@ namespace BusinessApi {
 
       app.UseEndpoints(endpoints => {
         endpoints.MapControllers();
+        endpoints.MapHealthChecks("/health");
       });
+
+      var ret = ConsulHelper.ServiceRegister(Configuration).Result;
+      Console.WriteLine(JsonConvert.SerializeObject(ret, Formatting.Indented));
     }
   }
 }

@@ -1,18 +1,10 @@
 {
   "ReRoutes": [
     {
-      "DownstreamPathTemplate": "/company/{everything}",
+      "DownstreamPathTemplate": "/{everything}",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 5010
-        },
-        {
-          "Host": "localhost",
-          "Port": 5012
-        }
-      ],
+      "UseServiceDiscovery": true,
+      "ServiceName": "companyApi",
       "UpstreamPathTemplate": "/company/{everything}",
       "UpstreamHttpMethod": ["Get", "Post", "Delete"],
       "LoadBalancerOptions": {
@@ -20,19 +12,23 @@
       }
     },
     {
-      "DownstreamPathTemplate": "/business/{everything}",
+      "DownstreamPathTemplate": "/{everything}",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 5021
-        }
-      ],
+      "UseServiceDiscovery": true,
+      "ServiceName": "businessApi",
       "UpstreamPathTemplate": "/business/{everything}",
-      "UpstreamHttpMethod": ["Get", "Post"]
+      "UpstreamHttpMethod": ["Get", "Post"],
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      }
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "http://localhost:5000"
+    "BaseUrl": "http://192.168.1.101:5000",
+    "ServiceDiscoveryProvider": {
+      "Host": "192.168.1.101",
+      "Port": 8500,
+      "Type": "Consul"
+    }
   }
 }
