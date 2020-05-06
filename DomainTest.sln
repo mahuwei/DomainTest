@@ -31,6 +31,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessApi", "GatewayApis\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "GatewayApis\Models\Models.csproj", "{12152B7A-9B50-47CC-A5BA-F0F17C55A79C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdServer", "IdServer\IdServer.csproj", "{545F81FB-297A-4508-B5B9-CEB73669D05D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{12152B7A-9B50-47CC-A5BA-F0F17C55A79C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12152B7A-9B50-47CC-A5BA-F0F17C55A79C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12152B7A-9B50-47CC-A5BA-F0F17C55A79C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{545F81FB-297A-4508-B5B9-CEB73669D05D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{545F81FB-297A-4508-B5B9-CEB73669D05D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{545F81FB-297A-4508-B5B9-CEB73669D05D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{545F81FB-297A-4508-B5B9-CEB73669D05D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,6 +84,7 @@ Global
 		{BC5250F4-6039-458B-848E-A8604056B8DF} = {5B11CD76-9B34-4EB8-A032-4CFD9BA6AD24}
 		{8B4A9733-7862-4C29-B89A-7B83CD2DCC8B} = {5B11CD76-9B34-4EB8-A032-4CFD9BA6AD24}
 		{12152B7A-9B50-47CC-A5BA-F0F17C55A79C} = {5B11CD76-9B34-4EB8-A032-4CFD9BA6AD24}
+		{545F81FB-297A-4508-B5B9-CEB73669D05D} = {5B11CD76-9B34-4EB8-A032-4CFD9BA6AD24}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F9C8701F-6B46-4CEF-BA9F-D338ADAD1E27}

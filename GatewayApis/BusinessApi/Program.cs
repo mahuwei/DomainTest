@@ -30,7 +30,7 @@ namespace BusinessApi {
             options.ConsulConfigurationOptions = configuration => {
               options.ConsulConfigurationOptions =
                 cco => {
-                  //cco.Address = new Uri("http://192.168.1.101:8500");
+                  //cco.Address = new Uri("http://192.168.1.129:8500");
                   cco.Address = new Uri($"{Configuration["Consul:ServicesIp"]}:{Configuration["Consul:Port"]}");
                 };
               options.Optional = true;

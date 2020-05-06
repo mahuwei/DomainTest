@@ -5,7 +5,7 @@
       "commandName": "Project",
       "launchBrowser": false,
       "launchUrl": "business/wf",
-      "applicationUrl": "http://192.168.1.101:5020",
+      "applicationUrl": "http://192.168.1.129:5020",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

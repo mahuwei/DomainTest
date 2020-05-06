@@ -1,11 +1,11 @@
 {
   "Consul": {
-    "ServicesIp": "http://192.168.1.101",
+    "ServicesIp": "http://192.168.1.129",
     "Port": "8500",
     "Datacenter": "dc1",
     "ServiceName": "companyApi",
     "HealthCheck": "/health",
-    "LocalIp": "192.168.1.101",
+    "LocalIp": "192.168.1.129",
     "LocalPort": "5010"
   }
 }
