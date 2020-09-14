@@ -45,6 +45,9 @@ namespace ServerWeb {
         var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
         var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
         c.IncludeXmlComments(xmlPath);
+        // 添加子项说明信息
+        xmlPath = Path.Combine(AppContext.BaseDirectory, "Domain.xml");
+        c.IncludeXmlComments(xmlPath);
       });
 
       services.AddDbContext<DomainContext>(builder => {
@@ -55,7 +58,7 @@ namespace ServerWeb {
         //如果你使用的 EF 进行数据操作，你需要添加如下配置：
         x.UseEntityFramework<DomainContext>();
         x.UseKafka(options => {
-          options.Servers = "192.168.1.51:9093,192.168.1.51:9092,192.168.1.51:9094";
+          options.Servers = "192.168.1.51:9092";
           options.CustomHeaders = kafkaResult => new List<KeyValuePair<string, string>> {
             new KeyValuePair<string, string>("kafka.offset", kafkaResult.Offset.ToString()),
             new KeyValuePair<string, string>("afka.partition", kafkaResult.Partition.ToString())
@@ -63,10 +66,10 @@ namespace ServerWeb {
         });
 
         x.DefaultGroup = "ServerWebDomain";
-        x.FailedThresholdCallback = (type, message) => {
+        x.FailedThresholdCallback = info => {
           Log.Logger.Error(
             "A message of type {@type} failed after executing {@FailedRetryCount} several times, requiring manual troubleshooting. Message: {@message}",
-            type, x.FailedRetryCount, message);
+            info.MessageType, x.FailedRetryCount, info.Message);
         };
       });
     }

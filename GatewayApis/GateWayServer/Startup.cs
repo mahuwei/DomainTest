@@ -38,27 +38,7 @@ namespace GateWayServer {
         endpoints.MapControllers();
       });
 
-      app.UseOcelot(configuration => {
-          configuration.PreErrorResponderMiddleware = async (ctx, next) => {
-            try {
-              ctx.HttpContext.Request.Headers.Add("myreq", $"ocelot-request:{Guid.NewGuid()}");
-              await next.Invoke();
-            }
-            catch (FirstException fe) {
-              Console.WriteLine(fe.Message);
-              throw;
-            }
-            catch (SecondException se) {
-              Console.WriteLine(se.Message);
-              throw;
-            }
-            catch (Exception ex) {
-              Console.WriteLine(ex.Message);
-              throw;
-            }
-          };
-        })
-        .Wait();
+      app.UseOcelot().Wait();
     }
   }
 }

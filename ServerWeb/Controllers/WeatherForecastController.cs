@@ -6,7 +6,7 @@ using Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ServerWeb.Commands.Wf.Publish;
+using ServerWeb.Commands.Wf.MediatPublish;
 using ServerWeb.Commands.Wf.Send;
 using ServerWeb.Services;
 

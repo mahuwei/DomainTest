@@ -1,8 +1,19 @@
-﻿using System;
+using System;
 using FluentValidation;
 
 namespace Domain {
+  /// <summary>
+  ///   Api返回对象
+  /// </summary>
+  /// <typeparam name="T"></typeparam>
   public class ApiResponse<T> {
+    /// <summary>
+    ///   构造函数
+    /// </summary>
+    /// <param name="data"></param>
+    /// <param name="status"></param>
+    /// <param name="msg"></param>
+    /// <param name="ex"></param>
     public ApiResponse(T data, int status = 0, string msg = "Ok", Exception ex = null) {
       Status = status;
       Msg = msg;
@@ -20,16 +31,42 @@ namespace Domain {
     /// </summary>
     public int Status { get; set; }
 
+    /// <summary>
+    ///   错误消息
+    /// </summary>
     public string Msg { get; set; }
+
+    /// <summary>
+    ///   返回数据
+    /// </summary>
     public T Data { get; set; }
+
+    /// <summary>
+    ///   错误信息
+    /// </summary>
     public BadRequestMessage ErrorDetail { get; set; }
   }
 
-
+  /// <summary>
+  ///   错误信息
+  /// </summary>
   public class BadRequestMessage {
+    /// <summary>
+    ///   错误类型
+    /// </summary>
     public BadRequestMessageType MessageType { get; set; }
+
+    /// <summary>
+    ///   错误信息
+    /// </summary>
     public string Message { get; set; }
 
+    /// <summary>
+    ///   生成返回错误
+    /// </summary>
+    /// <param name="e"></param>
+    /// <param name="message"></param>
+    /// <returns></returns>
     public static BadRequestMessage CreateMessage(Exception e, out string message) {
       BadRequestMessage bm;
       if (e is ValidationException ev) {
@@ -45,6 +82,9 @@ namespace Domain {
     }
   }
 
+  /// <summary>
+  ///   错误类型
+  /// </summary>
   public enum BadRequestMessageType {
     /// <summary>
     ///   数据校验错误
